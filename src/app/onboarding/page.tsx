@@ -79,7 +79,7 @@ export default function OnboardingPage() {
             // Update session to reflect changes (isUsernameSet/isOnboarded)
             await update({ isOnboarded: true, username: data.username });
 
-            router.replace('/profile');
+            router.replace('/dashboard');
         } catch (error) {
             console.error('Error during onboarding:', error);
             const axiosError = error as AxiosError<ApiResponse>;
