@@ -20,12 +20,12 @@ const Navbar = () => {
 
     return (
         <nav className='p-2 md:p-2 shadow-md bg-[#146140] text-white'>
-            <div className='container mx-auto flex flex-col md:flex-row justify-between items-center'>
-                <a className='text-xl font-bold mb-4 md:mb-0' href="/dashboard" >anonFeedback</a>
+            <div className='container mx-auto flex flex-row justify-between items-center'>
+                <a className='text-xl font-bold' href="/dashboard" >anonFeedback</a>
                 {
                     session ? (
-                        <div className="flex items-center gap-4">
-                            <span className='hidden md:block mr-2 text-sm font-medium'>
+                        <div className="flex items-center gap-4 bg-white/20 rounded-r-full p-2">
+                            <span className='hidden md:block text-sm font-medium'>
                                 {user?.username || user?.email}
                             </span>
                             <DropdownMenu>
