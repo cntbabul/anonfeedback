@@ -20,11 +20,13 @@ const MessageSchema: Schema<Message> = new mongoose.Schema({
 export interface User extends Document {
     username: string;
     email: string;
+    image?: string;
     password: string;
     verifyCode: string;
     verifyCodeExpiry: Date;
     isVerified: boolean;
     isAcceptingMessages: boolean;
+    isOnboarded: boolean;
     messages: Message[];
 }
 
@@ -42,17 +44,21 @@ const UserSchema: Schema<User> = new mongoose.Schema({
         unique: true,
         match: [/.+\@.+\..+/, 'Please use a valid email address'],
     },
+    image: {
+        type: String,
+        required: false,
+    },
     password: {
         type: String,
-        required: [true, 'Password is required'],
+        required: false, // Optional for OAuth users
     },
     verifyCode: {
         type: String,
-        required: [true, 'Verify Code is required'],
+        required: false, // Optional for OAuth users
     },
     verifyCodeExpiry: {
         type: Date,
-        required: [true, 'Verify Code Expiry is required'],
+        required: false, // Optional for OAuth users
     },
     isVerified: {
         type: Boolean,
@@ -61,6 +67,10 @@ const UserSchema: Schema<User> = new mongoose.Schema({
     isAcceptingMessages: {
         type: Boolean,
         default: true,
+    },
+    isOnboarded: {
+        type: Boolean,
+        default: false,
     },
     messages: [MessageSchema],
 });
